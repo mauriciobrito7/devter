@@ -1,7 +1,6 @@
 import css from "styled-jsx/css";
 import { breakpoints, fonts, colors } from "../../styles/theme";
 import { addOpacityToColor } from "../../styles/utils";
-
 const backgroundColor = addOpacityToColor(colors.primary, 0.5);
 
 export const globalStyles = css.global`
@@ -11,12 +10,13 @@ export const globalStyles = css.global`
       radial-gradient(${backgroundColor} 1px, transparent 1px);
     background-position: 0 0, 25px 25px;
     background-size: 50px 50px;
-    padding: 0;
-    margin: 0;
+
     font-family: ${fonts.base};
   }
   * {
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
   }
   a {
     color: inherit;
