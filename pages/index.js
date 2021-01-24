@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
-import { AppLayout } from "../components/AppLayout/AppLayout";
-import { Button } from "../components/Button/Button";
-import GitHub from "../components/Icons/GitHub";
-import { colors } from "../styles/theme";
+import { AppLayout } from "components/AppLayout/AppLayout";
+import { Button } from "components/Button/Button";
+import GitHub from "components/Icons/GitHub";
+import { colors } from "styles/theme";
 
 import { loginWithGitHub, onAuthStateChanged } from "../utils/firebase";
+import { Avatar } from "components/Avatar/Avatar";
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
-  console.log(user);
   useEffect(() => {
     onAuthStateChanged((user) => setUser(user));
   }, []);
@@ -43,8 +43,11 @@ export default function Home() {
             )}
             {user && user.avatar && (
               <div>
-                <img src={user.avatar} />
-                <strong>{user.username}</strong>
+                <Avatar
+                  alt={user.username}
+                  src={user.avatar}
+                  text={user.username}
+                />
               </div>
             )}
           </div>
@@ -52,6 +55,9 @@ export default function Home() {
       </AppLayout>
 
       <style jsx>{`
+        img {
+          width: 120px;
+        }
         section {
           display: grid;
           height: 100%;
