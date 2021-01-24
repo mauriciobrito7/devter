@@ -12,25 +12,27 @@ if (!firebase.apps.length) {
 }
 
 const mapUserFromFirebaseAuthToUser = (user) => {
-  const { displayName, email, photoUrl } = user;
+  if (user) {
+    const { displayName, email, photoURL } = user;
 
-  return {
-    avatar: photoUrl,
-    username: displayName,
-    email: email,
-  };
+    return {
+      avatar: photoURL,
+      username: displayName,
+      email,
+    };
+  }
+
+  return null;
 };
 
 export const onAuthStateChanged = (onChange) => {
   return firebase.auth().onAuthStateChanged((user) => {
-    const normalizeduser = mapUserFromFirebaseAuthToUser(user);
-    onChange(normalizeduser);
+    const normalizedUser = mapUserFromFirebaseAuthToUser(user);
+    onChange(normalizedUser);
   });
 };
 
 export const loginWithGitHub = () => {
-  const githubProvider = new firebase.auth.githubProvider();
+  const githubProvider = new firebase.auth.GithubAuthProvider();
   return firebase.auth().signInWithPopup(githubProvider);
 };
-
-export default firebase;

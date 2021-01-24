@@ -4,7 +4,7 @@ import { colors } from "../../styles/theme";
 export const Button = ({ children, onClick }) => {
   return (
     <>
-      <button>{children}</button>
+      <button onClick={onClick}>{children}</button>
       <style jsx>{`
         button {
           align-items: center;

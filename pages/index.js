@@ -9,18 +9,16 @@ import { loginWithGitHub, onAuthStateChanged } from "../utils/firebase";
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
-
+  console.log(user);
   useEffect(() => {
     onAuthStateChanged((user) => setUser(user));
   }, []);
 
   const handleClick = () => {
     loginWithGitHub()
-      .then((user) => {
-        setUser(user);
-      })
-      .catch((error) => {
-        console.log(error);
+      .then(setUser)
+      .catch((err) => {
+        console.log(err);
       });
   };
 
