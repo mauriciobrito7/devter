@@ -36,6 +36,7 @@ export default css`
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     height: 90vh;
     width: 450px;
+    position: relative;
   }
   @media (min-width: ${breakpoints.mobile}) {
     main {

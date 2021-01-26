@@ -3,9 +3,10 @@ import Head from "next/head";
 import { AppLayout } from "components/AppLayout/AppLayout";
 import { Button } from "components/Button/Button";
 import GitHub from "components/Icons/GitHub";
+import Logo from "components/Icons/Logo";
 import { colors } from "styles/theme";
 
-import { loginWithGitHub, onAuthStateChanged } from "../utils/firebase";
+import { loginWithGitHub, onAuthStateChanged } from "utils/firebase";
 import { Avatar } from "components/Avatar/Avatar";
 
 export default function Home() {
@@ -30,6 +31,7 @@ export default function Home() {
       </Head>
       <AppLayout>
         <section>
+          <Logo width="100px" />
           <h1>Devter</h1>
           <h2>
             Talk about development <br /> with developers 👩‍💻 👨‍💻
@@ -67,7 +69,8 @@ export default function Home() {
 
         h1 {
           color: ${colors.primary};
-          font-weight: 900;
+          font-weight: 800;
+          font-size: 32px;
           margin-bottom: 1em;
         }
         h2 {
