@@ -8,12 +8,26 @@ import { colors } from "styles/theme";
 
 import { loginWithGitHub, onAuthStateChanged } from "utils/firebase";
 import { Avatar } from "components/Avatar/Avatar";
+import { useRouter } from "next/router";
 
 export default function Home() {
   const [user, setUser] = useState(undefined);
+  const router = useRouter();
+
+  const USER_STATES = {
+    NOT_LOGGED: null,
+    NOT_KNOWN: undefined,
+  };
+
   useEffect(() => {
     onAuthStateChanged((user) => setUser(user));
   }, []);
+
+  useEffect(() => {
+    {
+      user && router.replace("/home");
+    }
+  }, [user]);
 
   const handleClick = () => {
     loginWithGitHub()
@@ -37,21 +51,13 @@ export default function Home() {
             Talk about development <br /> with developers 👩‍💻 👨‍💻
           </h2>
           <div>
-            {user === null && (
+            {user === USER_STATES.NOT_LOGGED && (
               <Button onClick={handleClick}>
                 <GitHub fill="#fff" width={24} height={24} />
                 Login with Github
               </Button>
             )}
-            {user && user.avatar && (
-              <div>
-                <Avatar
-                  alt={user.username}
-                  src={user.avatar}
-                  text={user.username}
-                />
-              </div>
-            )}
+            {user === USER_STATES.NOT_KNOWN && <div>"Loading...."</div>}
           </div>
         </section>
       </AppLayout>
