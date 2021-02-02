@@ -20,5 +20,5 @@ export default function useUser() {
     }
   }, [user]);
 
-  return [user, setUser];
+  return user;
 }
