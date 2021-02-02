@@ -4,19 +4,23 @@ import { addOpacityToColor } from "../../styles/utils";
 const backgroundColor = addOpacityToColor(colors.primary, 0.5);
 
 export const globalStyles = css.global`
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
   html,
   body {
     background-image: radial-gradient(${backgroundColor} 1px, transparent 1px),
       radial-gradient(${backgroundColor} 1px, transparent 1px);
     background-position: 0 0, 25px 25px;
     background-size: 50px 50px;
-
+    overflow: hidden;
     font-family: ${fonts.base};
   }
-  * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+  textarea,
+  input {
+    font-family: ${fonts.base};
   }
   a {
     color: inherit;
@@ -36,6 +40,7 @@ export default css`
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     height: 90vh;
     width: 450px;
+    overflow-y: auto;
     position: relative;
   }
   @media (min-width: ${breakpoints.mobile}) {

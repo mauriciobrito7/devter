@@ -1,10 +1,12 @@
 import React from "react";
 import { colors } from "../../styles/theme";
 
-export const Button = ({ children, onClick }) => {
+export const Button = ({ children, onClick, disabled }) => {
   return (
     <>
-      <button onClick={onClick}>{children}</button>
+      <button disabled={disabled} onClick={onClick}>
+        {children}
+      </button>
       <style jsx>{`
         button {
           align-items: center;
@@ -18,6 +20,11 @@ export const Button = ({ children, onClick }) => {
           font-weight: 800;
           padding: 8px 24px;
           transition: opacity 0.3s ease;
+          user-select: none;
+        }
+        button[disabled] {
+          pointer-events: none;
+          opacity: 0.2;
         }
         button > :global(svg) {
           margin-right: 8px;
