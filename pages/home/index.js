@@ -3,6 +3,12 @@ import { AppLayout } from "components/AppLayout/AppLayout";
 import { Devit } from "components/Devit/Devit";
 import useUser from "hooks/useUser";
 import { fetchLatestDevits } from "utils/firebase";
+import Link from "next/link";
+import Create from "components/Icons/Create";
+import { colors } from "../../styles/theme";
+import Home from "components/Icons/Home";
+import Search from "components/Icons/Search";
+import Head from "next/head";
 
 export default function HomePage() {
   const [timeline, setTimeline] = useState([]);
@@ -15,6 +21,9 @@ export default function HomePage() {
   return (
     <>
       <AppLayout>
+        <Head>
+          <title>Home / Devter</title>
+        </Head>
         <header>
           <h2>Inicio</h2>
         </header>
@@ -33,14 +42,30 @@ export default function HomePage() {
             )
           )}
         </section>
-        <nav></nav>
+        <nav>
+          <Link href="/compose/tweet">
+            <a>
+              <Home width={32} height={32} stroke="#09f" />
+            </a>
+          </Link>
+          <Link href="/compose/tweet">
+            <a>
+              <Search width={32} height={32} stroke="#09f" />
+            </a>
+          </Link>
+          <Link href="/compose/tweet">
+            <a>
+              <Create width={32} height={32} stroke="#09f" />
+            </a>
+          </Link>
+        </nav>
       </AppLayout>
       <style jsx>{`
         header {
           align-items: center;
-          border-bottom: 1px solid #eee;
-          background: #ffffffcc;
+          background: #ffffffaa;
           backdrop-filter: blur(5px);
+          border-bottom: 1px solid #eee;
           height: 49px;
           display: flex;
           position: sticky;
@@ -48,6 +73,7 @@ export default function HomePage() {
           width: 100%;
         }
         section {
+          flex: 1;
         }
         h2 {
           font-size: 21px;
@@ -55,12 +81,28 @@ export default function HomePage() {
           padding-left: 15px;
         }
         nav {
+          background: #fff;
           bottom: 0;
           border-top: 1px solid #eee;
+          display: flex;
           height: 49px;
           position: sticky;
           width: 100%;
-          background: #fff;
+        }
+        nav a {
+          align-items: center;
+          display: flex;
+          flex: 1 1 auto;
+          height: 100%;
+          justify-content: center;
+        }
+        nav a:hover {
+          background: radial-gradient(#0099ff22 15%, transparent 16%);
+          background-size: 180px 180px;
+          background-position: center;
+        }
+        nav a:hover > :global(svg) {
+          stroke: ${colors.primary};
         }
       `}</style>
     </>
