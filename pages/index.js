@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import useUser, { USER_STATES } from "hooks/useUser";
 
 export default function Home() {
-  const [user, setUser] = useUser();
+  const user = useUser();
   const router = useRouter();
 
   useEffect(() => {
