@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { AppLayout } from "components/AppLayout/AppLayout";
 import { Button } from "components/Button/Button";
 import useUser from "hooks/useUser";
 import { useRouter } from "next/router";
@@ -37,7 +36,7 @@ const ComposeTweet = () => {
       const onComplete = () => {
         task.snapshot.ref.getDownloadURL().then(setImgURL);
       };
-      /*firebase methods */
+      /*firebase events */
       task.on("state_changed", onProgress, onError, onComplete);
     }
   }, [task]);
@@ -82,40 +81,38 @@ const ComposeTweet = () => {
 
   return (
     <>
-      <AppLayout>
-        <section className="form-container">
-          {user && (
-            <section className="avatar-container">
-              <Avatar src={user.avatar} />
+      <section className="form-container">
+        {user && (
+          <section className="avatar-container">
+            <Avatar src={user.avatar} />
+          </section>
+        )}
+        <form onSubmit={handleSubmit}>
+          <textarea
+            onChange={handleChange}
+            onDragEnter={handleDragEnter}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+            value={message}
+            placeholder="What's going on?"
+          ></textarea>
+          {imgURL && (
+            <section className="remove-img">
+              <button
+                onClick={() => {
+                  setImgURL(null);
+                }}
+              >
+                x
+              </button>
+              <img src={imgURL} />
             </section>
           )}
-          <form onSubmit={handleSubmit}>
-            <textarea
-              onChange={handleChange}
-              onDragEnter={handleDragEnter}
-              onDragLeave={handleDragLeave}
-              onDrop={handleDrop}
-              value={message}
-              placeholder="What's going on?"
-            ></textarea>
-            {imgURL && (
-              <section className="remove-img">
-                <button
-                  onClick={() => {
-                    setImgURL(null);
-                  }}
-                >
-                  x
-                </button>
-                <img src={imgURL} />
-              </section>
-            )}
-            <div>
-              <Button disabled={isButtonDisabled}>Devitear</Button>
-            </div>
-          </form>
-        </section>
-      </AppLayout>
+          <div>
+            <Button disabled={isButtonDisabled}>Devitear</Button>
+          </div>
+        </form>
+      </section>
       <style jsx>{`
         div {
           padding: 15px;
