@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Devit } from "components/Devit/Devit";
 import useUser from "hooks/useUser";
-import { fetchLatestDevits } from "utils/firebase";
+import { listenLatestDevits } from "utils/firebase";
 import Link from "next/link";
 import Create from "components/Icons/Create";
 import { colors } from "../../styles/theme";
@@ -14,7 +14,15 @@ export default function HomePage() {
   const user = useUser();
 
   useEffect(() => {
-    user && fetchLatestDevits().then(setTimeline);
+    let unsubscribe;
+
+    if (user) {
+      unsubscribe = listenLatestDevits((newDevits) => {
+        setTimeline(newDevits);
+      });
+    }
+
+    return () => unsubscribe && unsubscribe();
   }, [user]);
 
   return (
@@ -82,7 +90,7 @@ export default function HomePage() {
         }
         nav {
           background: #fff;
-          bottom: -2px;
+          bottom: -2 px;
           border-top: 1px solid #eee;
           display: flex;
           height: 49px;

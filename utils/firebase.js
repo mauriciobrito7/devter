@@ -51,29 +51,39 @@ export const addDevit = ({ avatar, content, img, userId, userName }) => {
   });
 };
 
+const mapDevitFromFirabaseToDevitObject = (doc) => {
+  const data = doc.data();
+  const id = doc.id;
+  const { createdAt } = data;
+  return {
+    ...data,
+    id,
+    createdAt: +createdAt.toDate(),
+  };
+};
+
+export const listenLatestDevits = (callback) => {
+  return db
+    .collection("devits")
+    .orderBy("createdAt", "desc")
+    .limit(20)
+    .onSnapshot(({ docs }) => {
+      const newDevists = docs.map(mapDevitFromFirabaseToDevitObject);
+      callback(newDevists);
+    });
+};
+
 export const fetchLatestDevits = () => {
   return db
     .collection("devits")
     .orderBy("createdAt", "desc")
     .get()
     .then(({ docs }) => {
-      return docs.map((doc) => {
-        const data = doc.data();
-        const id = doc.id;
-        const { createdAt } = data;
-        return {
-          ...data,
-          id,
-          createdAt: +createdAt.toDate(),
-        };
-      });
+      return docs.map(mapDevitFromFirabaseToDevitObject);
     });
 };
 
 export const uploadImage = (file) => {
-  /*Para usar el storage lo primero que tenemos que hacer es guardar una referencia
-  a ese storage que queremos guardar. Se podria decir que la referencia es una llave. Y ahi pondremos
-  nuestro file, la propiedad name es propia del navegador */
   const ref = firebase.storage().ref(`images/${file.name}`);
   const task = ref.put(file);
   return task;
