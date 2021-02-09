@@ -71,6 +71,9 @@ export const fetchLatestDevits = () => {
 };
 
 export const uploadImage = (file) => {
+  /*Para usar el storage lo primero que tenemos que hacer es guardar una referencia
+  a ese storage que queremos guardar. Se podria decir que la referencia es una llave. Y ahi pondremos
+  nuestro file, la propiedad name es propia del navegador */
   const ref = firebase.storage().ref(`images/${file.name}`);
   const task = ref.put(file);
   return task;
