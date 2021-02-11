@@ -73,16 +73,6 @@ export const listenLatestDevits = (callback) => {
     });
 };
 
-export const fetchLatestDevits = () => {
-  return db
-    .collection("devits")
-    .orderBy("createdAt", "desc")
-    .get()
-    .then(({ docs }) => {
-      return docs.map(mapDevitFromFirabaseToDevitObject);
-    });
-};
-
 export const uploadImage = (file) => {
   const ref = firebase.storage().ref(`images/${file.name}`);
   const task = ref.put(file);
