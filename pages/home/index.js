@@ -90,7 +90,7 @@ export default function HomePage() {
         }
         nav {
           background: #fff;
-          bottom: -2 px;
+          bottom: -2px;
           border-top: 1px solid #eee;
           display: flex;
           height: 49px;
