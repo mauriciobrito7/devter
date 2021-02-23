@@ -4,7 +4,8 @@ export const fonts = {
 };
 
 export const breakpoints = {
-  mobile: "520px",
+  mobile: "480px",
+  tablet: "720px",
 };
 
 export const colors = {
