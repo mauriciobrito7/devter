@@ -31,7 +31,7 @@ export default function useTimeAgo(timestamp) {
       const interval = setInterval(() => {
         const newTimeAgo = getDateDiffs(timestamp);
         setTimeago(newTimeAgo);
-      }, 5000);
+      }, 5 * 1000000);
 
       return () => clearInterval(interval);
     }
