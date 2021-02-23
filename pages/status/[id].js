@@ -9,7 +9,6 @@ const DevitPage = (props) => {
   return (
     <>
       <Devit {...props} />
-      <h2>Estoy en una ruta dinamica</h2>
     </>
   );
 };
