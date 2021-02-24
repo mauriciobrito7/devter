@@ -1,8 +1,8 @@
-import * as React from "react"
+import * as React from "react";
 
 export default function ArrowLeft(props) {
   return (
-    <svg width={21} height={21} viewBox="0 0 21 21" {...props}>
+    <svg width={28} height={28} stroke="#000" viewBox="0 0 21 21" {...props}>
       <g
         fill="none"
         fillRule="evenodd"
@@ -12,5 +12,5 @@ export default function ArrowLeft(props) {
         <path d="M7.5 6.497l-4 4.002 4 4M16.5 10.5h-13" />
       </g>
     </svg>
-  )
+  );
 }
