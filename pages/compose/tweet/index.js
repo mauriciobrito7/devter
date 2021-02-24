@@ -4,6 +4,9 @@ import useUser from "hooks/useUser";
 import { useRouter } from "next/router";
 import { addDevit, uploadImage } from "../../../utils/firebase";
 import { Avatar } from "components/Avatar/Avatar";
+import { Header } from "components/Header/Header";
+import Head from "next/head";
+import ArrowLeft from "components/Icons/ArrowLeft";
 
 const COMPOSE_STATES = {
   USER_NOT_KNOWN: 0,
@@ -81,13 +84,26 @@ const ComposeTweet = () => {
 
   return (
     <>
+      <Head>
+        <title>Make a new post</title>
+      </Head>
+      <Header>
+        <ArrowLeft
+          onClick={() => {
+            router.back();
+          }}
+        />
+        <Button onClick={handleSubmit} disabled={isButtonDisabled}>
+          Devitear
+        </Button>
+      </Header>
       <section className="form-container">
         {user && (
           <section className="avatar-container">
             <Avatar src={user.avatar} />
           </section>
         )}
-        <form onSubmit={handleSubmit}>
+        <form>
           <textarea
             onChange={handleChange}
             onDragEnter={handleDragEnter}
@@ -108,9 +124,6 @@ const ComposeTweet = () => {
               <img src={imgURL} />
             </section>
           )}
-          <div>
-            <Button disabled={isButtonDisabled}>Devitear</Button>
-          </div>
         </form>
       </section>
       <style jsx>{`
@@ -122,7 +135,7 @@ const ComposeTweet = () => {
           padding-left: 10px;
         }
         button {
-          background: rgba(0, 0, 0, 0.3);
+          background: rgba(0, 0, 0, 0.5);
           border: 0;
           border-radius: 999px;
           color: #fff;
@@ -136,17 +149,23 @@ const ComposeTweet = () => {
         .form-container {
           align-items: flex-start;
           display: flex;
+          flex: 1;
         }
         .remove-img {
           position: relative;
+          height: 320px;
+          border-radius: 1em;
         }
         form {
           padding: 10px;
+          width: 100%;
         }
         img {
           border-radius: 10px;
-          height: auto;
           width: 100%;
+          height: 100%;
+          width: 100%;
+          object-fit: fill;
         }
         textarea {
           border: ${drag === DRAG_IMAGE_STATES.DRAG_OVER
@@ -159,6 +178,7 @@ const ComposeTweet = () => {
           outline: 0;
           resize: none;
           width: 100%;
+          border-bottom: 2px solid #eee;
         }
       `}</style>
     </>
