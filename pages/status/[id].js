@@ -2,13 +2,29 @@ import { Devit } from "components/Devit/Devit";
 import React from "react";
 import { firestore } from "utils/admin";
 import { useRouter } from "next/router";
+import Head from "next/head";
+import { Header } from "components/Header/Header";
+import ArrowLeft from "components/Icons/ArrowLeft";
 
 const DevitPage = (props) => {
   const router = useRouter();
-  if (router.isFallback) return <h1>Cargando...</h1>;
+  if (router.isFallback) return <h1>Loading...</h1>;
   return (
     <>
+      <Head>
+        <title>{props.userName}</title>
+      </Head>
+      <Header>
+        <ArrowLeft onClick={() => router.back()} />
+      </Header>
       <Devit {...props} />
+      <style jsx>
+        {`
+          article {
+            flex: 1;
+          }
+        `}
+      </style>
     </>
   );
 };
