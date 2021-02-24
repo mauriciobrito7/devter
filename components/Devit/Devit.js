@@ -47,6 +47,7 @@ export const Devit = ({
           bord er-bottom: 1px solid #eee;
           display: flex;
           padding: 10px 15px;
+          flex:1;
         }
         article:hover {
           background: #f5f8fa;
