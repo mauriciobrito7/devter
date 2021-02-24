@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>devter 🐦 </title>
+        <title>Devter 🐦</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <section>
