@@ -9,16 +9,16 @@ export const Nav = () => {
   return (
     <>
       <nav>
-        <Link href="/compose/tweet">
+        <Link href="/home">
           <a>
             <Home width={32} height={32} stroke="#09f" />
           </a>
         </Link>
-        <Link href="/compose/tweet">
+        {/* <Link href="/compose/tweet">
           <a>
             <Search width={32} height={32} stroke="#09f" />
           </a>
-        </Link>
+        </Link> */}
         <Link href="/compose/tweet">
           <a>
             <Create width={32} height={32} stroke="#09f" />
