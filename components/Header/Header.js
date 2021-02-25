@@ -22,9 +22,6 @@ export const Header = ({ children, title }) => {
           width: 100%;
           height: 50px;
         }
-        svg {
-          fill: #000;
-        }
         h2 {
           font-size: 21px;
           font-weight: 800;
