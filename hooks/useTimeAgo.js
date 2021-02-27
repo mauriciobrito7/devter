@@ -41,7 +41,7 @@ export default function useTimeAgo(timestamp) {
     return formatDate(timestamp);
   }
 
-  const rtf = new Intl.RelativeTimeFormat("en", { style: "short" });
+  const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
 
   const { value, unit } = timeago;
 
