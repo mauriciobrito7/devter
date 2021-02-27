@@ -41,7 +41,7 @@ export default css`
   main {
     background: #fff;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    height: 90vh;
+    height: 100vh;
     width: 100%;
     overflow-y: auto;
     position: relative;
@@ -50,8 +50,14 @@ export default css`
   }
   @media (min-width: ${breakpoints.mobile}) {
     main {
-      height: 90vh;
       width: ${breakpoints.mobile};
+    }
+  }
+
+  @media (min-width: ${breakpoints.tablet}) {
+    main {
+      height: 90vh;
+      width: ${breakpoints.tablet};
     }
   }
 `;
