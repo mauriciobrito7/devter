@@ -26,6 +26,9 @@ export const globalStyles = css.global`
     color: inherit;
     text-decoration: none;
   }
+  ::-webkit-scrollbar {
+    height: 16px;
+  }
 `;
 
 export default css`
@@ -39,7 +42,7 @@ export default css`
     background: #fff;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     height: 90vh;
-    width: 450px;
+    width: 100%;
     overflow-y: auto;
     position: relative;
     display: flex;
